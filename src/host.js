@@ -20,14 +20,29 @@ export default class ToDo extends Component {
         { title: 'Talk at techfest' },
         { title: 'Learn some stuff' },
       ],
+      inputText: '',
     };
+  }
+
+  onInputChangeText = (inputText) => {
+    this.setState({ inputText });
+  }
+
+  onButtonPress = () => {
+    this.setState({
+      items: [
+        ...this.state.items,
+        { title: this.state.inputText },
+      ],
+      inputText: '',
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Input />
-        <Button>Add</Button>
+        <Input text={this.state.inputText} onChangeText={this.onInputChangeText} />
+        <Button onPress={this.onButtonPress}>Add</Button>
         <ItemList items={this.state.items} />
       </View>
     );
