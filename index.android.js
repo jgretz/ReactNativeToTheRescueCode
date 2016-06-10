@@ -1,3 +1,4 @@
-import host from './src/host';
+import Host from './src/host';
+import { AppRegistry } from 'react-native';
 
-host();
+AppRegistry.registerComponent('ToDo', () => Host);
