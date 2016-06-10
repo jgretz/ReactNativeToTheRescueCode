@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import { Button, Input, ItemList } from './controls';
 
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ export default class ToDo extends Component {
     this.setState({
       items: [
         ...this.state.items,
-        { title: this.state.inputText },
+        { title: `${Platform.OS}: ${this.state.inputText}` },
       ],
       inputText: '',
     });
