@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,15 +8,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  input: {
+    margin: 20,
+    height: 50,
+    borderColor: 'gray',
+    borderWidth: 1,
   },
-  instructions: {
-    textAlign: 'center',
+  button: {
+    backgroundColor: '#000',
+    borderRadius: 22.5,
+    width: 220,
+    height: 45,
+    marginBottom: 12,
+  },
+  contentView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 17,
     color: '#fff',
-    marginBottom: 5,
   },
 });
 
@@ -25,41 +37,33 @@ export default class ToDo extends Component {
     super(props);
 
     this.state = {
-      colors: ['#ff0000', '#00ff00', '#0000ff'],
-      bgColorIndex: 0,
+      items: [
+        { title: 'Talk at DevUp' },
+        { title: 'Learn some stuff' },
+      ],
     };
-
-    setInterval(() => {
-      let newIndex = this.state.bgColorIndex + 1;
-      if (newIndex >= this.state.colors.length) {
-        newIndex = 0;
-      }
-
-      this.setState({ bgColorIndex: newIndex });
-    }, 5000);
   }
 
-  renderGetStartedText() {
-    switch (Platform.OS) {
-      case 'ios':
-        return 'IOS is cool';
-
-      case 'android':
-        return 'Android is cool';
-
-      default:
-        return 'Who are you?';
-    }
+  renderItems() {
+    return this.state.items.map((item, index) =>
+      <Text key={index}>
+        {item.title}
+      </Text>
+    );
   }
 
   render() {
-    const bgColor = { backgroundColor: this.state.colors[this.state.bgColorIndex] };
-
     return (
-      <View style={[styles.container, bgColor]}>
-        <Text style={styles.instructions}>
-          {this.renderGetStartedText()}
-        </Text>
+      <View style={styles.container}>
+        <TextInput style={styles.input} />
+        <TouchableHighlight style={styles.button}>
+          <View style={styles.contentView}>
+            <Text style={styles.buttonText}>
+              Add
+            </Text>
+          </View>
+        </TouchableHighlight>
+        {this.renderItems()}
       </View>
     );
   }
