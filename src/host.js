@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
+import autobind from 'class-autobind';
+
 import { Button, Input, ItemList } from './controls';
 
 const styles = StyleSheet.create({
@@ -14,6 +16,7 @@ const styles = StyleSheet.create({
 export default class ToDo extends Component {
   constructor(props) {
     super(props);
+    autobind(this);
 
     this.state = {
       items: [
@@ -24,11 +27,12 @@ export default class ToDo extends Component {
     };
   }
 
-  onInputChangeText = (inputText) => {
+  onInputChangeText(inputText) {
+    console.log(inputText);
     this.setState({ inputText });
   }
 
-  onButtonPress = () => {
+  onButtonPress() {
     this.setState({
       items: [
         ...this.state.items,
