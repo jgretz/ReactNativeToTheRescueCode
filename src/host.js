@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
+    color: '#fff',
     marginBottom: 5,
   },
 });
@@ -36,16 +36,16 @@ export default class ToDo extends Component {
       }
 
       this.setState({ bgColorIndex: newIndex });
-    }, 1000);
+    }, 5000);
   }
 
   renderGetStartedText() {
     switch (Platform.OS) {
       case 'ios':
-        return 'IOS';
+        return 'IOS is cool';
 
       case 'android':
-        return 'Android';
+        return 'Android is cool';
 
       default:
         return 'Who are you?';
@@ -57,14 +57,8 @@ export default class ToDo extends Component {
 
     return (
       <View style={[styles.container, bgColor]}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
         <Text style={styles.instructions}>
           {this.renderGetStartedText()}
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
         </Text>
       </View>
     );
